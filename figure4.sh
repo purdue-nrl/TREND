@@ -1,0 +1,2 @@
+CUDA_VISIBLE_DEVICES=3 python trans.py --save_path=./outputs/cifar10/transferability/ --dataset=cifar10 --analysis=seed --num_steps=20
+CUDA_VISIBLE_DEVICES=3 python pred_vs_actual_num_trans.py  --dataset=cifar10 --save_path=./outputs/cifar10/transferability/
