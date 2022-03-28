@@ -16,6 +16,24 @@ conda activate TREND
 pip install -r requirements.txt
 ```
 
+## Attacking Ensembles 
+To attack ensembles
+```
+python attack_ensemble.py --attack_type=sign_avg --dataset=cifar10 --models=FP_resnet,Q6_resnet,Q8_resnet --save_path=./outputs/cifar10/transferability/ 
+```
+This generates the numbers for a single ensemble, must be repeated for different ensembles
+
+```
+python attack_ensemble.py --attack_type=avg --dataset=cifar10 --models=FP_resnet,Q6_resnet,Q8_resnet --save_path=./outputs/cifar10/transferability/ 
+```
+This generates the numbers for a single ensemble, must be repeated for different ensembles
+
+Attack types:
+* For Direction of Average Gradient (D-AG) attack use *--attack_type=avg* 
+
+* For Average Gradient Direction (A-GD) attack use *--attack_type=sign_avg* 
+
+* For Unanimous Gradient Direction (U-GD) attack use *--attack_type=sign_all*
 
 ## Training
 The models presented in the paper were trained and evaluated using train.py.
@@ -91,6 +109,7 @@ python train.py --epochs=350 --dataset=cifar10 --dorefa=t --abit=8 --train_batch
 python train.py --epochs=350 --dataset=imagenet --dorefa=t --abit=8 --train_batch_size=32 --test_batch_size=32
 ```
 
+
 ## Evaluating model accuracies
 
 To evaluate the models
@@ -127,7 +146,7 @@ python trans.py --limit=1000 --save_path=./ --dataset=cifar100 --analysis=seed -
 
 for CIFAR100
 
-### Figure 1a
+### Figure 2a
 To generate numbers for Figure 1a's first row run, --load_model specifes the source
 ```
 python trans.py --limit=1000 --save_path=./ --dataset=cifar10 --analysis=arch --arch_load=resnet
@@ -136,7 +155,7 @@ Similarly for the second row
 ```
 python trans.py --limit=1000 --save_path=./ --dataset=cifar10 --analysis=arch --arch_load=resnet34
 ```
-### Figure 1b
+### Figure 2b
 To generate numbers for Figure 1b's first row run, --arch_load specifes the source model architecture, --limit specifies the  subset size, torch_weights uses pytorch trained weights
 ```
 python trans.py --limit=1000 --save_path=./ --dataset=imagenet --analysis=arch --torch_weights=T --arch_load=torch_resnet18
@@ -147,7 +166,7 @@ python trans.py --limit=1000 --save_path=./ --dataset=imagenet --analysis=arch -
 ```
 and so on..
 
-### Figure 2a
+### Figure 3a
 To generate numbers for Figure 2a's first row run, --load_model specifes the source
 ```
 python trans.py --limit=1000 --save_path=./ --dataset=cifar10 --analysis=quant --load_model=HT
@@ -157,7 +176,7 @@ Similarly for the second row
 python trans.py --limit=1000 --save_path=./ --dataset=cifar10 --analysis=quant --load_model=Q1
 ```
 
-### Figure 2b
+### Figure 3b
 To generate numbers for Figure 2b's first row run, --load_model specifes the source
 ```
 python trans.py --limit=1000 --save_path=./ --dataset=imagenet --analysis=quant --load_model=HT
@@ -167,7 +186,7 @@ Similarly for the second row
 python trans.py --limit=1000 --save_path=./ --dataset=imagenet --analysis=quant --load_model=Q1
 ```
 
-### Figure 3a
+### Figure 4a
 To generate numbers for Figure 3a's first row run
 ```
 python trans.py --limit=1000 --save_path=./ --dataset=cifar10 --analysis=weight --dorefa_load=T  --wbit_load=1
@@ -177,35 +196,8 @@ Similarly for the second row
 python trans.py --limit=1000 --save_path=./ --dataset=cifar10 --analysis=weight  --dorefa_load=T  --wbit_load=2
 ```
 
-### Figure 3b
+### Figure 4b
 To generate numbers for Figure 3b's first row run
 ```
 python trans.py --limit=1000 --save_path=./ --dataset=cifar10 --analysis=act --dorefa_load=T  --abit_load=1
 ```
-
-### Figure 4
-
-To generate Figure 4's induvidual plot
-```
-sh figure4.sh
-```
-This generates the predicted and acutal curves for ResNet18-ResNet18_2, ResNet18-ResNet18_3, ResNet18-ResNet18_4
-
-### Figure 5
-To generate numbers for Figure 5 run
-```
-sh figure5.sh
-```
-
-### Figure 6
-To generate the numbers for the plot in Figure 6a, run
-```
-python attack_ensemble.py --dataset=cifar10 --models=FP_resnet,Q6_resnet,Q8_resnet --save_path=./outputs/cifar10/transferability/ --attack_type=sign_avg
-```
-This generates the numbers for a single plot, must be repeated for different ensembles
-
-To generate the numbers for the plot in Figure 6b, run
-```
-python attack_ensemble.py --dataset=cifar10 --models=FP_resnet,Q6_resnet,Q8_resnet --save_path=./outputs/cifar10/transferability/ --attack_type=avg
-```
-This generates the numbers for a single plot, must be repeated for different ensembles
