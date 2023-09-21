@@ -2,10 +2,25 @@
 
 This repository is the official implementation of the paper "TREND: Transferability based Robust ENsemble Design".
 
+
+## Citation
+If you find our repository useful for your research, please consider citing our paper:
+```bibtex
+@article{ravikumar2022trend,
+  title={TREND: Transferability based Robust ENsemble Design},
+  author={Ravikumar, Deepak and Kodge, Sangamesh D and Garg, Isha and Roy, Kaushik},
+  journal={IEEE Transactions on Artificial Intelligence}, 
+  year={2023},
+  volume={4},
+  number={3},
+  pages={534-548},
+  doi={10.1109/TAI.2022.3175172}
+}
+```
+
 ## Requirements
 
-
-**How to setup environment?**
+**How to setup the environment?**
 
 It is highly recommended to use Anaconda. To install Anaconda please see https://docs.anaconda.com/anaconda/install/. Once Anaconda is installed navigate to this repo and execute the following commands
 
@@ -177,7 +192,7 @@ python trans.py --limit=1000 --save_path=./ --dataset=cifar10 --analysis=quant -
 ```
 
 ### Figure 3b
-To generate numbers for Figure 2b's first row run, --load_model specifes the source
+To generate numbers for Figure 2b's first-row run, --load_model specifies the source
 ```
 python trans.py --limit=1000 --save_path=./ --dataset=imagenet --analysis=quant --load_model=HT
 ```
